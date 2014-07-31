@@ -1,0 +1,11 @@
+@(message: String)(implicit session: play.api.mvc.Session)
+
+@main("Welcome to Play") {
+
+  <h1>@message</h1>
+@if(session.get("email")isEmpty) {
+  <h2>ログインしてない</h2>
+} else {
+  <h2>@session.get("email") でログイン中</h2>
+}
+}

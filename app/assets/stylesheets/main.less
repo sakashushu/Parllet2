@@ -1,0 +1,66 @@
+//@import './lib/bootswatch/bower_components/bootstrap/less/bootstrap';
+@import './lib/bootstrap/less/bootstrap';
+//@import './lib/bootswatch/simplex/variables';
+@import './lib/bootswatch/lumen/variables';
+
+@icon-font-path: '../lib/bootswatch/fonts/';
+
+@font-face {
+  font-family: 'mplus-1c-regular';
+  src: url('fonts/mplus-1c-regular-sub.eot'); /* IE9以上用 */
+  src: url('fonts/mplus-1c-regular-sub.eot?#iefix') format('embedded-opentype'), /* IE8以前用 */
+      url('fonts/mplus-1c-regular-sub.woff') format('woff'), /* モダンブラウザ用 */
+      url('fonts/mplus-1c-regular-sub.ttf') format('truetype'); /* iOS, Android用 */
+}
+
+
+html, body, textarea, input, select, .ui-widget, .ui-widget input, .ui-widget textarea, .ui-widget select, .ui-widget button, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'mplus-1c-regular';
+}
+
+body {
+//  background: #efdeb4;
+}
+
+#logo-img {
+	width: 116px;
+	height: 30px;
+	background: url(/assets/images/logo.png) no-repeat 0 0;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 10px;
+
+	/* 以下、IE6/7用 */
+	*height: 0;
+	*padding-top: 30px;
+	*text-indent: 0;
+	*display: block;
+}
+
+#logo-pre {
+    display: inline-block;
+	font-size: 10px;
+}
+#logo_alpha-img {
+	width: 80px;
+	height: 25px;
+	background: url(/assets/images/logo_alpha.png) no-repeat 0 0;
+	text-indent: 100%;
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block;
+
+	position: absolute;
+	top: 15px;
+	left: 10px;
+	z-index: 802;
+
+	/* 以下、IE6/7用 */
+	*height: 0;
+	*padding-top: 30px;
+	*text-indent: 0;
+	*display: block;
+}
