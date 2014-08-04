@@ -18,3 +18,6 @@ views.detaillist=明細表
 views.detaillist.balance.title=収支明細
 views.detaillist.remainderBank.title=残高明細（口座系）
 views.detaillist.remainderPrlt.title=残高明細（Parllet）
+
+views.login.email=Ｅメール
+views.login.password=パスワード

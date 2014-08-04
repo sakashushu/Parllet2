@@ -1,15 +1,6 @@
 @(form: Form[(String, String)])(implicit flash: Flash, session: play.api.mvc.Session)
 
 @main("Login") {
-<!--
-
-  <div class="jumbotron">
-    <h1>
-      @Messages("views.navbar.login")
-    </h1>
-  </div>
- -->
-
   @helper.form(
     routes.Application.authenticate,
     'class -> "form-horizontal"
@@ -30,14 +21,14 @@
       @helper.inputText(
         form("email"),
         'type -> "email",
-        'placeholder -> "john@example.com",
-        '_label -> "Email Address",
+        'placeholder -> "example@example.com",
+        '_label -> Messages("views.login.email"),
         '_error -> form.globalError
       )
       @helper.inputPassword(
         form("password"),
         'placeholder -> "secret",
-        '_label -> "Passowrd",
+        '_label -> Messages("views.login.password"),
         '_error -> form.globalError
       )
       <div class="control-group">
