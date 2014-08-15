@@ -93,7 +93,7 @@ object Application extends Controller with Secured {
       form => {
         val user = HaUser(form._1, form._2, form._3._1)
         HaUser.create(user)
-        Ok(html.registered(user))
+        Ok(html.registered(user)).withSession("email" -> user.email)
       }
     )
   }
