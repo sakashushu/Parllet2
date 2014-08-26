@@ -1,14 +1,18 @@
 @(form: Form[(String, String)])(implicit flash: Flash, session: play.api.mvc.Session)
 
+@import helper.twitterBootstrap._
+
 @main("Login") {
+  <legend>@Messages("common.login")</legend>
   @helper.form(
     routes.Application.authenticate,
-    'class -> "form-horizontal"
+//    'class -> "form-horizontal",
+    'role -> "form"
   ) {
     <fieldset>
       @if(form.hasErrors) {
         <div class="alert alert-block alert-error">
-          There are problems.
+          @Messages("validation.hasProbrems")
         </div>
       }
 
@@ -18,28 +22,32 @@
         </div>
       }
 
-      @helper.inputText(
-        form("email"),
-        'type -> "email",
-        'placeholder -> "example@example.com",
-        '_label -> Messages("views.login.email"),
-        '_error -> form.globalError
-      )
-      @helper.inputPassword(
-        form("password"),
-        'placeholder -> "secret",
-        '_label -> Messages("views.login.password"),
-        '_error -> form.globalError
-      )
-      <div class="control-group">
-        <div class="controls">
-          <button type="submit" id="loginbutton" class="btn btn-default btn-lg">Login</button>
-        </div>
+      <div class="form-group">
+        @helper.inputText(
+          form("email"),
+          'class -> "form-control",
+          'type -> "email",
+          'placeholder -> "example@example.com",
+          '_label -> Messages("views.auth.email"),
+          '_error -> form.globalError
+        )
+      </div>
+      <div class="form-group">
+        @helper.inputPassword(
+          form("password"),
+          'class -> "form-control",
+          'placeholder -> "secret",
+          '_label -> Messages("views.auth.password"),
+          '_error -> form.globalError
+        )
+      </div>
+      <div class="form-group">
+        <button type="submit" id="loginbutton" class="btn btn-default btn-lg">@Messages("common.login")</button>
       </div>
     </fieldset>
   }
 
-  <div class="well well-small">
-    Don't you have an account? <a href="@routes.Application.signup">Let's sign up here</a>.
+  <div class="well well-small" style="margin-top: 20px">
+      @Messages("views.login.txt.signup1") <a href="@routes.Application.signup">@Messages("views.login.txt.signup2")</a>@Messages("views.login.txt.signup3")
   </div>
 }

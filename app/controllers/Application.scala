@@ -7,6 +7,7 @@ import play.api._
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.db.DB
+import play.api.i18n.Messages
 import play.api.mvc._
 
 import views._
@@ -49,6 +50,7 @@ object Application extends Controller with Secured {
   }
 
   // ユーザ認証
+  //
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(html.login(formWithErrors)),
@@ -59,7 +61,7 @@ object Application extends Controller with Secured {
   // ログアウト
   def logout = Action {
     Redirect(routes.Application.login).withNewSession.flashing(
-      "success" -> "You've been logged out"
+      "success" -> Messages("views.logout.logged_out")
     )
   }
 

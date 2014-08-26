@@ -19,7 +19,9 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             @if(session.get("email")isEmpty) {
+@*
             <span>ログインしてない</span>
+*@
             } else {
             <!-- Collect the nav links, forms, and other content for toggling -->
             <ul class="nav navbar-nav">
@@ -42,9 +44,9 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
                         @if(session.get("email")isEmpty) {
-                        <li><a href="@routes.Application.login">@Messages("views.navbar.login")</a></li>
+                        <li><a href="@routes.Application.login">@Messages("common.login")</a></li>
                         <li class="divider"></li>
-                        <li><a href="@routes.Application.signup">@Messages("views.navbar.signup")</a></li>
+                        <li><a href="@routes.Application.signup">@Messages("common.signup")</a></li>
                         } else {
                         <li><a href="#">@Messages("views.navbar.userinfo")</a></li>
                         <li class="divider"></li>
