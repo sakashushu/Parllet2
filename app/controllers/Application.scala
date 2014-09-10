@@ -69,10 +69,9 @@ object Application extends Controller with Secured {
   val signupForm = Form(
     tuple(
       "email" -> nonEmptyText.verifying(
-        "This email address is already registered.",
+        Messages("views.auth.err.email.dup"),
         email => HaUser.findByEmail(email).isEmpty
       ),
-      "name" -> nonEmptyText,
       "password" -> tuple(
         "main" -> nonEmptyText,
         "confirm" -> nonEmptyText
@@ -93,10 +92,19 @@ object Application extends Controller with Secured {
     signupForm.bindFromRequest.fold(
       errors => BadRequest(html.signup(errors)),
       form => {
-        val user = HaUser(form._1, form._2, form._3._1)
+//        val user = HaUser(form._1, form._2, form._3._1)
+        val user = HaUser(form._1, null, form._2._1)
         HaUser.create(user)
-        Ok(html.registered(user)).withSession("email" -> user.email)
+//        Ok(html.registered(user)).withSession("email" -> user.email)
+//        Redirect(routes.Application.registered).withSession("email" -> user.email).flashing(
+//          "test" -> "flash_test")
+        Redirect(routes.Application.registered).flashing(
+          "fresh" -> "1").withSession("email" -> user.email)
       }
     )
+  }
+
+  def registered = Action { implicit request =>
+    Ok(html.registered(null))
   }
 }

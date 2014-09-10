@@ -1,18 +1,30 @@
-@(user: HaUser)(implicit session: play.api.mvc.Session)
+@(user: HaUser)(implicit flash: Flash, session: play.api.mvc.Session)
 
-@main("Registration complete!") {
-  <legend>Welcome!</legend>
+@main(
+  if(flash.get("fresh")isEmpty) {
+    Messages("views.registered.title.reload")
+  } else {
+    Messages("views.registered.title")
+  }
+) {
+  <legend>
+    @if(flash.get("fresh")isEmpty) {
+      @Messages("views.registered.message.reload")
+    } else {
+      @Messages("views.registered.message")
+    }
+  </legend>
+
 
   <dl class="dl-horizontal">
-    <dt>Email Address</dt>
+    <dt>@Messages("views.auth.email")</dt>
+@*
     <dd>@user.email</dd>
-  </dl>
-  <dl class="dl-horizontal">
-    <dt>Your name</dt>
-    <dd>@user.name</dd>
+*@
+    <dd>@session.get("email")</dd>
   </dl>
 
   <div class="well well-small">
-    <a href="@routes.Application.logout">logout</a>
+    <a href="@routes.Application.logout">@Messages("common.logout")</a>
   </div>
 }

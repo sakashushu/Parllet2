@@ -3,6 +3,9 @@ common.login=ログイン
 common.signup=新規登録
 common.signup.long=新規ユーザー登録
 common.signup.do=ユーザー登録する
+common.logout=ログアウト
+
+views.common.alert.error=入力に問題があります
 
 views.navbar.logo.pre1=ちょっと変わった
 views.navbar.logo.pre2=Web家計簿
@@ -12,7 +15,6 @@ views.navbar.logo.alpha.caution1=Parllet(パレット)はアルファ版です�
 views.navbar.logo.alpha.caution2=ご承知おきください。
 
 views.navbar.userinfo=会員情報
-views.navbar.logout=ログアウト
 
 views.balancetable=残高表
 views.dailyaccount=日計表
@@ -23,9 +25,11 @@ views.detaillist.remainderBank.title=残高明細（口座系）
 views.detaillist.remainderPrlt.title=残高明細（Parllet）
 
 views.auth.email=Ｅメール
+views.auth.email.placeholder=mail@example.com
 views.auth.password=パスワード
 views.auth.confirm=（確認用）
 views.auth.password.confirm=パスワード（確認用）
+views.auth.err.email.dup=このＥメールは既に登録されています
 
 views.login.txt.signup1=まだアカウントをお持ちでないですか？
 views.login.txt.signup2=こちら
@@ -35,6 +39,12 @@ views.signup.email.help=ログイン時のＩＤになります
 views.signup.password_confirm.help=もう一度パスワードを入力して下さい
 
 views.logout.logged_out=ログアウトしました
+
+views.registered.title=登録完了！
+views.registered.title.reload=登録は完了しています
+
+views.registered.message=アカウントが作成されました
+views.registered.message.reload=アカウントは作成されています
 
 #validation
 validation.hasProbrems=以下の問題を修正して下さい

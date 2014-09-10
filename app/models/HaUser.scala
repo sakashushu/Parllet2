@@ -5,20 +5,20 @@ import anorm._
 import play.api.Play.current
 import play.api.db._
 
-case class HaUser(email: String, name: String, password: String)
+case class HaUser(email: String, fullname: Option[String], password: String)
 
 object HaUser {
   val simple = {
     get[String]("HaUser.email") ~
-    get[String]("HaUser.name") ~
+    get[Option[String]]("HaUser.fullname") ~
     get[String]("HaUser.password") map {
-      case email ~ name ~ password => HaUser(email, name, password)
+      case email ~ fullname ~ password => HaUser(email, fullname, password)
     }
   }
 
   def findById(id: Long): Option[HaUser] = {
     DB.withConnection { implicit c =>
-      SQL("select * from HaUser where hauser_id = {id}").on(
+      SQL("select * from HaUser where id = {id}").on(
         'id -> id
       ).as(HaUser.simple.singleOpt)
     }
@@ -57,15 +57,15 @@ object HaUser {
       SQL(
         """
           insert into HaUser (
-            email, name, password
+            email, fullname, password
           )
           values (
-            {email}, {name}, {password}
+            {email}, {fullname}, {password}
           )
         """
       ).on(
           'email -> user.email,
-          'name -> user.name,
+          'fullname -> Option(user.fullname),
           'password -> user.password
         ).executeUpdate()
 
