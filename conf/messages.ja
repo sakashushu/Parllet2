@@ -48,7 +48,7 @@ views.registered.message.reload=アカウントは作成されています
 
 #validation
 validation.hasProbrems=以下の問題を修正して下さい
-
+validation.badCall=不正な呼び出しです
 
 
 #

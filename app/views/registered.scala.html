@@ -1,17 +1,25 @@
 @(user: HaUser)(implicit flash: Flash, session: play.api.mvc.Session)
 
 @main(
-  if(flash.get("fresh")isEmpty) {
-    Messages("views.registered.title.reload")
+  if(session.get("email")isEmpty) {
+    Messages("validation.badCall")
   } else {
-    Messages("views.registered.title")
+    if(flash.get("fresh")isEmpty) {
+      Messages("views.registered.title.reload")
+    } else {
+      Messages("views.registered.title")
+    }
   }
 ) {
   <legend>
-    @if(flash.get("fresh")isEmpty) {
-      @Messages("views.registered.message.reload")
+    @if(session.get("email")isEmpty) {
+      @Messages("validation.badCall")
     } else {
-      @Messages("views.registered.message")
+      @if(flash.get("fresh")isEmpty) {
+        @Messages("views.registered.message.reload")
+      } else {
+        @Messages("views.registered.message")
+      }
     }
   </legend>
 
