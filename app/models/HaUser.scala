@@ -5,14 +5,16 @@ import anorm._
 import play.api.Play.current
 import play.api.db._
 
-case class HaUser(email: String, fullname: Option[String], password: String)
+case class HaUser(email: String, fullname: Option[String], isadmin: Boolean, password: String, fbid: Option[BigInt])
 
 object HaUser {
   val simple = {
     get[String]("HaUser.email") ~
     get[Option[String]]("HaUser.fullname") ~
-    get[String]("HaUser.password") map {
-      case email ~ fullname ~ password => HaUser(email, fullname, password)
+    get[Boolean]("HaUser.isadmin") ~
+    get[String]("HaUser.password") ~
+    get[Option[BigInt]]("HaUser.fbid") map {
+      case email ~ fullname ~ isadmin ~ password ~ fbid => HaUser(email, fullname, isadmin, password, fbid)
     }
   }
 
@@ -57,16 +59,18 @@ object HaUser {
       SQL(
         """
           insert into HaUser (
-            email, fullname, password
+            email, fullname, isadmin, password, fbid
           )
           values (
-            {email}, {fullname}, {password}
+            {email}, {fullname}, {isadmin}, {password}, {fbid}
           )
         """
       ).on(
           'email -> user.email,
           'fullname -> Option(user.fullname),
-          'password -> user.password
+          'isadmin -> user.isadmin,
+          'password -> user.password,
+          'fbid -> Option(user.fbid)
         ).executeUpdate()
 
       user

@@ -93,7 +93,7 @@ object Application extends Controller with Secured {
       errors => BadRequest(html.signup(errors)),
       form => {
 //        val user = HaUser(form._1, form._2, form._3._1)
-        val user = HaUser(form._1, null, form._2._1)
+        val user = HaUser(form._1, null, false, form._2._1, null)
         HaUser.create(user)
 //        Ok(html.registered(user)).withSession("email" -> user.email)
 //        Redirect(routes.Application.registered).withSession("email" -> user.email).flashing(
